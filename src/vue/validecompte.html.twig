@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} Validation du compte {% endblock %}
+
+{% block contenu %}
+
+    {% if form.valide is defined %}
+        {% if form.valide == true %}
+            <div class="wrapper" style="text-align: center">
+                <h1 class="h3 mb-3 font-weight-normal">Inscription validée !</h1>
+                <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=connexion">Me connecter</a></h1>
+            </div>
+        {% else %}
+            <div class="wrapper" style="text-align: center">
+                <h1 class="h3 mb-3 font-weight-normal">Erreur : {{form.message}}</h1>
+                <h1 class="h3 mb-3 font-weight-normal"><a href="index.php">Accueil</a></h1>
+            </div>
+        {% endif %}
+
+    {% else %} 
+        <div class="wrapper" style="text-align: center">
+
+            <br /><br />
+            <h1 style="color: #2056ac">Validation de l'inscription :</h1>
+
+            <form class="form-signin" action="index.php?page=validecompte" method="post"
+                  enctype="application/x-www-form-urlencoded">            
+                <h6 class="h6 mb-3 font-weight-normal"> </h6>
+                <img src="https://www.blogplm.com/wp-content/uploads/sites/5/2014/07/Processus-de-validation-213x300.jpg" class="image-ronde">
+                <h6 class="h6 mb-3 font-weight-normal"> </h6>
+
+                
+                <input type="hidden" id="inputNumunique" name="inputNumunique" class="form-control" value="{{form.numunique}}">
+                
+                <input type="hidden" id="inputEmail" name="inputEmail" class="form-control" value="{{form.email}}">
+                
+                
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit" name="btValide">Valider mon compte</button>
+
+            </form>
+
+        </div>
+        <br/><br/><br/>
+
+
+
+
+    {% endif %}
+{% endblock %}    

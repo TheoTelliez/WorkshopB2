@@ -3,7 +3,28 @@
 function getPage($db) {
 // Inscrire vos contrôleurs ici
     $lesPages['accueil'] = "actionAccueil;0";
-    $lesPages['tests'] = "actionTests;0";
+    $lesPages['connexion'] = "actionConnexion;0";
+    $lesPages['inscrire'] = "actionInscrire;0";
+    $lesPages['deconnexion'] = "actionDeconnexion;0";
+    $lesPages['mentions'] = "actionMentions;0";
+    $lesPages['contact'] = "actionContact;0";
+    $lesPages['apropos'] = "actionApropos;0";
+    $lesPages['moncompte'] = "actionCompte;0";
+    $lesPages['modifphoto'] = "actionModifPhoto;0";
+    $lesPages['modifcompte'] = "actionModifCompte;0";
+    $lesPages['mdpoublie'] = "actionMdpOublie;0";
+    $lesPages['checkmail'] = "actionCheckMail;0";
+    $lesPages['modifmotdepasse'] = "actionModifMotDePasse;0";
+    $lesPages['ajoutlanguages'] = "actionAdminLanguages;1";
+    $lesPages['languages'] = "actionLanguages;0";
+    $lesPages['modiflanguages'] = "actionModifLanguages;1";
+    $lesPages['logsadmin'] = "actionLogsAdmin;1";
+    $lesPages['logsdev'] = "actionLogsDev;0";
+    $lesPages['stats'] = "actionStats;1";
+    $lesPages['checkcompte'] = "actionCheckCompte;0";
+    $lesPages['validecompte'] = "actionValideCompte;0";
+    $lesPages['recherche'] = "actionRecherche;0";
+
 
     if ($db != null) {
         if (isset($_GET['page'])) {

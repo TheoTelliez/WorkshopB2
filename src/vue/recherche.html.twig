@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} Recherches {% endblock %}
+
+{% block contenu %}
+
+
+    {% if listerecherche is empty %}
+
+        <div class="wrapper" style="text-align: center">
+            <br /><br />
+            <h1 class="h3 mb-3 font-weight-normal">Aucune recherche effectuée / Élément introuvable</h1>
+            <h1 class="h3 mb-3 font-weight-normal">Veuillez faire une recherche pour afficher des résultats</h1>
+        </div>
+
+    {% else %}
+
+        <div class="wrapper" style="text-align: center">
+
+            <br /><br />
+            <div class="col-lg-12 col-sm-12">
+                <div class="panel panel-default">
+                    <!-- Table -->
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <tr><th style="text-align: center">Email :</th><th style="text-align: center">Nom</th><th style="text-align: center">Prénom</th><th style="text-align: center">Nom du langage</th><th style="text-align: center">Contact</th></tr>
+                                    {% for c in listerecherche %}
+                                <tr><td style="text-align: center; width: 20%">{{c.email}}</td><td style="text-align: center; width: 20%">{{c.nom}}</td><td style="text-align: center; width: 20%">{{c.prenom}}</td><td style="text-align: center; width: 20%">{{c.nomdulanguage}}</td><td style="text-align: center; width: 20%"><div class="btn-group btn-group-lg"><a href="mailto:{{c.email}}?cc=&bcc=&subject=&body="><span class="glyphicon glyphicon-envelope" ariahidden="true"></span></a></div></td></tr>
+                                    {% endfor %}
+                        </table>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <br/><br/><br/>
+    {% endif %}
+
+{% endblock %}  

@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} Mon Compte {% endblock %}  
+
+{% block contenu %}
+
+    <div class="wrapper" style="text-align: center;" >
+        <br /><br />
+        <h1 style="color: #2056ac">Mon compte</h1>
+
+        <br/><br/>
+
+        <!-- Contenu -->
+
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <h2 style="color: #2056ac">Mes informations :</h2><br/><br/>
+                <h4><u><b>Votre email :</b></u> {{form.utilisateur.email}} </h4>
+                <h4><u><b>Votre nom :</b></u> {{form.utilisateur.nom}} </h4>
+                <h4><u><b>Votre prénom :</b></u> {{form.utilisateur.prenom}} </h4>
+                <h4><u><b>Votre rôle : </b></u>
+                {%if form.utilisateur.idRole == 1 %} <code> Administrateur </code> {%endif%}
+                {%if form.utilisateur.idRole == 2 %} <code> Développeur </code> {%endif%} 
+                </h4>
+                <h4><u><b>Vos langages :</b></u><ul class="list-inline"> {%  for l in listeml  %} <li>{{l.nom}}</li> {% endfor %} </ul></h4>
+                <h4><u><b>Votre date d'inscription :</b></u> {{form.utilisateur.dateinscription|date("d/M/Y")}} </h4>
+                <h4><u><b>Dernière connexion :</b></u> {{form.utilisateur.datedernier|date("d/M/Y")}} </h4>
+                <a href="index.php?page=modifcompte&email={{ form.utilisateur.email }}" class="bouton-compte">Modifier mon profil</a>
+                <a href="index.php?page=modifphoto&email={{ form.utilisateur.email }}" class="bouton-compte">Édition de la photo</a>
+                <br/>
+                <a href="index.php?page=languages" class="bouton-dessouscompte">Languages</a>
+                <a href="index.php?page=logsdev" class="bouton-dessouscompte">Mes connexions</a>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <h2 style="color: #2056ac">Ma photo de profil :</h2>
+                {% if form.utilisateur.photo is not empty %}
+
+                    <span><br/><br/><img width=300 src="images/{{form.utilisateur.photo}}" class="image-compte" alt="" /></span><br /><br /><br /><br /><br /><br /><br /><br />
+                    {% endif %} 
+
+            </div>
+
+        </div>
+
+        <br /><br /><br />
+        <div class='form-signin'>
+        <a style="float: left" href="index.php?page=deconnexion" class="btn btn-lg btn-primary btn-block">Se déconnecter</a>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <h1 class="h1 mb-3 font-weight-normal"> </h1>
+
+{% endblock %}

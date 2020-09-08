@@ -1,0 +1,106 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/main.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} Modifier votre photo {% endblock %}
+
+{% block contenu %}
+    {% if form.utilisateur is defined %}
+
+        {% if form.utilisateur != null %}
+            <div class="wrapper" style="text-align: center">
+                <br /><br />
+                <h1 style="color: #2056ac">Modification de votre photo :</h1>
+
+                <br/><br/>
+
+
+
+                <!-- Contenu -->
+                <div class="row">
+
+
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="6u 12u small">
+                            <h3 style="color: #2056ac">Ma photo actuelle :</h3>
+                            {% if form.utilisateur.photo is not empty %}
+                                <img height="400" class="image-modif" src="images/{{form.utilisateur.photo}}" alt="" /><br />
+                            {% endif %} 
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="6u$ 12u/(small)">
+                            <h3></h3>
+                            <br /><br /><br />
+                            <form class="form-signin" action="index.php?page=modifphoto" method="post"
+                                  enctype="multipart/form-data">
+                                <h3 style="color: #2056ac"><u>Changer la photo :</u></h3><br />
+
+                                <div>
+                                    <center>
+                                <label for="photo" class="sr-only">Photo :</label>
+                                <input type="file" name="photo" size="30" id="photo" class="form-control-static"/>
+                                    </center>
+                                </div>
+                                
+                                <br /><br />
+
+                                <button class="button fit special icon fa-check" type="submit" name="btPhotoValider" id="btPhotoValider">Valider les modifications</button>
+                                <br />
+
+                                <button name="btPhotoSupp" id="btPhotoSupp" class="button fit alt icon fa-eraser">Supprimer ma photo</button>
+                                <br /><br />
+
+                                <center>
+                                    <h1 class="h3 mb-3 font-weight-normal"><a style="color:#F64747;" href="index.php?page=moncompte&email={{ session.login }}">Retourner sur mon profil</a></h1>
+                                </center>
+                                <br />
+                                <input type="hidden" name="email" value="{{ form.utilisateur.email }}"/>
+                            </form>
+                        </div>
+                    </div>
+
+                    <br /><br /><br />
+
+                    <h1 class="h1 mb-3 font-weight-normal"> </h1>
+
+                </div>
+                <br />
+
+            </div>
+        {% else %}
+            <center>
+                <div class="wrapper" style="text-align: center">
+                    <br /><br />
+                    <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a style="color:#F64747;" href="index.php?moncompte&email={{ session.login }}">Retourner sur mon profil</a></h1>
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                </div>
+            </center>
+        {% endif %}
+    {% else %}
+        {% if form.valide == true %}
+            <center>
+                <div class="wrapper" style="text-align: center">
+                    <br /><br />
+                    <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a style="color:#F64747;" href="index.php?page=moncompte&email={{ session.login }}">Retourner sur mon profil</a></h1>
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                </div>
+            </center>
+        {% else %}
+            <center>
+                <div class="wrapper" style="text-align: center">
+                    <br /><br />
+                    <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+                    <h1 class="h3 mb-3 font-weight-normal"><a style="color:#F64747;" href="index.php?page=moncompte&email={{ session.login }}">Retourner sur mon profil</a></h1>
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                </div>
+            </center>
+        {% endif %}
+
+    {% endif %}
+
+
+{% endblock %} 

@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} Vérification des mails {% endblock %}
+
+{% block contenu %}
+
+        <div class="wrapper" style="text-align: center">
+            
+             <br /><br />
+        <h1 style="color: #2056ac">Un email a été envoyé</h1>
+        <br/>
+        <h2 style="color: #2056ac">Merci de vérifier vos mails (SPAMS) et de cliquer sur le bouton de validation du compte</h2>
+        <form class="form-signin" method="post">
+        <br/><br/>
+        <h2 class="h2 mb-3 font-weight-normal">Vous n'avez pas reçu le mail ? <button class="btn btn-lg btn-primary btn-block" type="submit" name="btRenvoieValide">Renvoyer</button> </h2>
+        </form> 
+        
+
+            
+            
+        </div>
+        <br/><br/><br/>
+
+{% endblock %}    

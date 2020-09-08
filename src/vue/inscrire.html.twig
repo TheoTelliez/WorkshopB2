@@ -1,0 +1,92 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} Se connecter {% endblock %}
+
+{% block contenu %}
+
+   
+    {% if form.valide is defined %}
+        {% if form.valide == true %}
+            <center>
+                <div class="wrapper" style="text-align: center">
+            <h1 class="h3 mb-3 font-weight-normal">Inscription réussie</h1>
+            <h1 class="h3 mb-3 font-weight-normal">Voici votre identifiant : {{form.email}}</h1>
+                </div>
+            </center>
+            {% if form.role == 1 %}
+                <center>
+                    <div class="wrapper" style="text-align: center">
+                <h1 class="h3 mb-3 font-weight-normal">Vous êtes administrateur du site</h1>
+                    </div>
+                </center>
+            {% else %}
+                <center>
+                    <div class="wrapper" style="text-align: center">
+                <h1 class="h3 mb-3 font-weight-normal">Vous êtes un développeur du site </h1><p> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+                    </div>
+                </center>
+            {% endif %}
+        {% else %}
+            <center>
+                <div class="wrapper" style="text-align: center">
+            <h1 class="h3 mb-3 font-weight-normal">Echec de l'inscription</h1>
+            <h1 class="h3 mb-3 font-weight-normal">Erreur : {{form.message}}</h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=inscrire">Retourner sur
+                    la page d'inscription</a></h1>
+                </div>
+            <p> <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+            </center>
+                {% endif %}
+
+    {% else %}   
+        <div class="wrapper" style="text-align: center">
+
+            <form class="form-signin" action="index.php?page=inscrire" method="post"
+                  enctype="multipart/form-data">            
+                <h6 class="h6 mb-3 font-weight-normal"> </h6>
+                <img src="https://pbs.twimg.com/profile_images/1024649812988387328/QWQbqff7_400x400.jpg" class="image-ronde">
+                <h6 class="h6 mb-3 font-weight-normal"> </h6>
+
+
+                <label for="inputSurname" class="sr-only">Nom:</label>
+                <input type="text" id="inputSurname" name="inputSurname" class="form-control"
+                       placeholder="Nom" required autofocus>
+
+                <label for="inputName" class="sr-only">Prénom:</label>
+                <input type="text" id="inputName" name="inputName" class="form-control"
+                       placeholder="Prénom" required autofocus>
+
+                <label for="inputEmail" class="sr-only">Email:</label>
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control"
+                       placeholder="Email" required autofocus>
+
+                <label for="inputPassword" class="sr-only">Mot de passe:</label>
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control"
+                       placeholder="Mot de passe" required>
+
+                <label for="inputPassword2" class="sr-only">Mot de passe:</label>
+                <input type="password" id="inputPassword2" name="inputPassword2" class="form-control"
+                       placeholder="Confirmation mot de passe" required>
+
+                <select class="form-control" name="role">
+                    <option value="1">Administrateur</option>
+                    <option value="2">Développeur</option>
+                </select>
+
+                <div style ="text-align: left">
+                    <h5>Choisir une photo de profil :       <label for="photo" class="sr-only">Photo :</label>
+                        <input type="file" name="photo" id="photo" class="form-control"/> </h5>
+                </div>
+
+                <h3 class="h3 mb-3 font-weight-normal"></h3>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        name="btInscrire" id="btInscrire">S'inscrire</button>
+            </form>
+
+        </div>
+        <br/><br/><br/>
+
+
+    {% endif %}
+{% endblock %} 
