@@ -35,7 +35,7 @@ function actionModifPhoto($twig, $db) {
                 if (!empty($_FILES['photo']['name'])) {
                     $extensions_ok = array('png', 'gif', 'jpg', 'jpeg');
                     $taille_max = 500000;
-                    $dest_dossier = '/var/www/html/symfony4-4059/public/PPE1/web/images/';
+                    $dest_dossier = '/var/www/html/symfony4-4059/public/WorkshopB2/web/images/';
                     if (!in_array(substr(strrchr($_FILES['photo']['name'], '.'), 1), $extensions_ok)) {
                         echo 'Veuillez sélectionner un fichier de type png, gif ou jpg !';
                     } else {

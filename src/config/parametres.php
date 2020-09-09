@@ -1,7 +1,7 @@
 <?php
 
 $config['serveur'] = 'localhost';
-$config['login'] = '';
-$config['mdp'] = '';
-$config['bd'] = '';
+$config['login'] = 'login4059';
+$config['mdp'] = 'kFILYMNLotHlbgo';
+$config['bd'] = 'dblogin4059WORKSHOP';
 ?>

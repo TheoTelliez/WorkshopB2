@@ -7,10 +7,10 @@ body
 {
     margin: 0px;
     padding: 0px;
-    background: #2056ac;
+    background: #3c763d;
     font-family: 'Questrial', sans-serif;
     font-size: 12pt;
-    color: #2056ac;
+    color: #3c763d;
 }
 
 
@@ -45,7 +45,7 @@ strong
 
 a
 {
-    color: #2056ac;
+    color: #3c763d;
 }
 
 .nav > li > a {
@@ -246,7 +246,7 @@ ul.contact li a
 ul.contact li a:before
 {
     display: inline-block;
-    background: #4C93B9;
+    background: #0000001a;
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -316,7 +316,7 @@ ul.contact li a:before
 #header-wrapper
 {
     overflow: hidden;
-    background: #2056ac;
+    background: #3c763d;
 }
 
 #header
@@ -386,7 +386,7 @@ ul.contact li a:before
 {
     background: #FFF;
     border-radius: 7px 7px 0px 0px;
-    color: #2056ac;
+    color: #3c763d;
 }
 
 #menu .current_page_item a
@@ -749,58 +749,58 @@ ul.tools li a:before
 }
 
 .image-ronde{
-  width : 150px; height : 150px;
-  border: none;
-  -moz-border-radius : 75px;
-  -webkit-border-radius : 75px;
-  border-radius : 50px;
-  border: 5px solid #2056ac;
+    width : 150px; height : 150px;
+    border: none;
+    -moz-border-radius : 75px;
+    -webkit-border-radius : 75px;
+    border-radius : 50px;
+    border: 5px solid #3c763d;
 }
 
 .image-compte{
-  border: none;
-  -moz-border-radius : 75px;
-  -webkit-border-radius : 75px;
-  border-radius : 50px;
-  border: 5px solid #2056ac;
+    border: none;
+    -moz-border-radius : 75px;
+    -webkit-border-radius : 75px;
+    border-radius : 50px;
+    border: 5px solid #3c763d;
 }
 
 .image-modif{
-  border: none;
-  -moz-border-radius : 75px;
-  -webkit-border-radius : 75px;
-  border-radius : 50px;
-  border: 5px solid #2056ac;
+    border: none;
+    -moz-border-radius : 75px;
+    -webkit-border-radius : 75px;
+    border-radius : 50px;
+    border: 5px solid #3c763d;
 }
 
 .bouton-compte{
     display: inline-block;
     margin-top: 2em;
     padding: 0.8em 2em;
-    background: #337ab7;
+    background: #3c763d;
     line-height: 1.8em;
     letter-spacing: 1px;
     text-decoration: none;
     font-size: 1em;
     color: #fff;
     border-radius: 6px;
-    
-    
+
+
 }
 
 .bouton-dessouscompte{
     display: inline-block;
     margin-top: 0.5em;
     padding: 0.8em 2em;
-    background: #337ab7;
+    background: #3c763d;
     line-height: 1.8em;
     letter-spacing: 1px;
     text-decoration: none;
     font-size: 1em;
     color: #fff;
     border-radius: 6px;
-    
-    
+
+
 }
 
 

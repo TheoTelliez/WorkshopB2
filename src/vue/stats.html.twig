@@ -8,7 +8,7 @@
         <div class="row">
             <br/><br/>
 
-            <h1 style="color: #2056ac">Connexions des développeurs :</h1>
+            <h1 style="color: ">Connexions des développeurs :</h1>
             <nav aria-label="navigation"> Recliquez après chaque changement.<br/> Afficher un graphique par : 
                 <ul class="pager">
                     <li id="btannee"><a title="Annee" >Année</a>     </li>
@@ -38,7 +38,7 @@
 
 
                     <div class="form-group" id="divselectannee"> <!-- Pour changer l'année de l'ANNEE -->
-                        <h3 id="afficherannee" style="color: #2056ac">Le graphique représente l'année {{ form.afficherannee }}</h3>
+                        <h3 id="afficherannee" style="color: ">Le graphique représente l'année {{ form.afficherannee }}</h3>
                         <select class="form-control" id="selectannee">
                             <option value="" disabled="disabled" selected>Cliquez pour changer d'année</option>
                             {% for i in 2020..2022 %}
@@ -55,7 +55,7 @@
 
 
                     <div class="form-group" id="divselectannee2"> <!-- Pour changer l'année du MOIS -->
-                        <h3 id="affichermois" style="color: #2056ac">Le graphique représente le {{ form.affichermois }}e mois de l'an {{ form.afficherannee }} </h3>
+                        <h3 id="affichermois" style="color: ">Le graphique représente le {{ form.affichermois }}e mois de l'an {{ form.afficherannee }} </h3>
                         <select class="form-control" id="selectannee2">
                             <option value="" disabled="disabled" selected>Changez l'année en premier</option>
                             {% for i in 2020..2022 %}
@@ -84,7 +84,7 @@
 
 
                     <div class="form-group" id="divselectannee3"> <!-- Pour changer l'année du JOUR -->
-                        <h3 id="afficherjour" style="color: #2056ac">Le graphique représente le {{ form.afficherjour }}e jour du {{ form.affichermois }}e mois de l'an {{ form.afficherannee }} </h3>
+                        <h3 id="afficherjour" style="color: ">Le graphique représente le {{ form.afficherjour }}e jour du {{ form.affichermois }}e mois de l'an {{ form.afficherannee }} </h3>
                         <select class="form-control" id="selectannee3">
                             <option value="" disabled="disabled" selected>Changez l'année en premier</option>
                             {% for i in 2020..2022 %}
