@@ -13,12 +13,16 @@
           enctype="application/x-www-form-urlencoded">
 
 
-        <h1 class="h1 mb-3 font-weight-normal">Modifier un language</h1>
+        <h1 class="h1 mb-3 font-weight-normal">Modifier un équipement</h1>
 
 
         <label for="inputModifLang" class="sr-only">Nom:</label>
         <input type="text" id="inputModifLang" name="inputModifLang" class="form-control"
                placeholder="Saisir un language" value="{{ form.langage.nom }}" required autofocus>
+
+        <label for="inputModifWatt" class="sr-only">Nom:</label>
+        <input type="text" id="inputModifWatt" name="inputModifWatt" class="form-control"
+               placeholder="Saisir un language" value="{{ form.langage.watt }}" required autofocus>
         
         <input type="hidden" name="idlangage" value="{{ form.langage.id }}"/>
 

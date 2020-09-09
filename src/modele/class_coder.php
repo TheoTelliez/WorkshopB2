@@ -11,16 +11,16 @@ class Coder {
 
     public function __construct($db) {
         $this->db = $db;
-        $this->insert = $db->prepare("insert into coder (idLanguage, emailcoder) values (:idLanguage, :emailcoder)");
+        $this->insert = $db->prepare("insert into coder (idLanguage, emailcoder, hpj) values (:idLanguage, :emailcoder, :hpj)");
         $this->select = $db->prepare("select idLangage from coder");
         $this->selectByEmail = $db->prepare("select c.idLanguage, l.nom as nom from coder c, language l where emailcoder=:emailcoder and c.idLanguage = l.id order by nom");
         $this->delete = $db->prepare("delete from coder where coder.idLanguage = :id and coder.emailcoder = :emailcoder");
         $this->rechercher = $db->prepare("select language.nom as nomdulanguage, utilisateurppe1.nom, utilisateurppe1.prenom, utilisateurppe1.email from coder, language, utilisateurppe1 where coder.idLanguage = language.id and utilisateurppe1.email=coder.emailcoder and language.nom like :recherche");
     }
 
-    public function insert($idLanguage, $emailcoder) {
+    public function insert($idLanguage, $emailcoder, $hpj) {
         $r = true;
-        $this->insert->execute(array(':idLanguage' => $idLanguage, ':emailcoder' => $emailcoder));
+        $this->insert->execute(array(':idLanguage' => $idLanguage, ':emailcoder' => $emailcoder, ':hpj' => $hpj));
         if ($this->insert->errorCode() != 0) {
             print_r($this->insert->errorInfo());
             $r = false;

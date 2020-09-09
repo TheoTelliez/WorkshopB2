@@ -8,40 +8,47 @@
         <form class="form-signin" action="index.php?page=languages" method="post"
               enctype="application/x-www-form-urlencoded">
             <div class="row">
-                <div class="col-lg-6 col-sm-12">
+                <div class="col-lg-12 col-sm-12">
                     <div class="panel panel-default">
                         <!-- Table -->
                         <div class="table-responsive">
                             <table class="table table-hover table-striped">
-                                <tr><th></th><th style="text-align: center">Équipements disponibles</th></tr>
+                                <tr>
+                                    <th style="text-align: center">Équipements</th>
+                                    <th style="text-align: center">kWh</th>
+                                    <th style="text-align: center">Modifier ma consommation journalière / par an</th>
+
+
+                                </tr>
                                         {% for ld in listeld %}
-                                    <tr><td><input type="checkbox" name="cocher[]" id="cocher[]" value="{{ld.id}}"/></td><td>{{ld.nom}}</td></tr>
+                                    <tr>
+
+                                        <td>{{ld.nom}}</td>
+                                        <td>{{ld.watt}}</td>
+                                        <td>
+
+                                            <a href="index.php?page=modifconso&id={{ld.id}}">Modifier
+
+                                            </a>
+
+
+
+                                        </td>
+                                        <!-- <td><input type="number" name="hpj[]" id="hpj[]" value="0" min="0" max="24" step="0.1"/></td>
+                                         <td><input type="number" name="jpa[]" id="jpa[]" value="0" min="0" max="365" step="1"/></td> -->
+                                        <input type="hidden" name="idLanguage" id="idLanguage" value="{{ld.nom}}"/>
+                                    </tr>
+
                                         {% endfor %}
                             </table>
 
                         </div>
 
                     </div>
-                    {% if listeld != empty %}
-                        <a href="index.php?page=languages"><button class="btn btn-lg btn-primary btn-block" type="submit" name="btCoder" id="btCoder">Ajouter</button></a>
+                    <!-- {% if listeld != empty %}
+                        <a href="index.php?page=languages"><button class="btn btn-lg btn-primary btn-block" type="submit" name="btSave" id="btSave">Sauvegarder</button></a>
                         <br/><br/>
-                    {% endif %}
-                </div>
-                <div class="col-lg-6 col-sm-12">
-                    <div class="panel panel-default">
-                        <!-- Table -->
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped">
-                                <tr><th style="text-align: center">Mes équipements</th><th></th><th></th></tr>
-                                        {% for ml in listeml %}
-                                    <tr><td>{{ml.nom}}</td><td><div class="btn-group btn-group-lg"><a href="index.php?page=languages&id={{ml.idLanguage}}"><span class="glyphicon glyphicon-trash" ariahidden="true"></span></a></div></td><td><input type="checkbox" name="cocher[]" id="cocher[]" value="{{ml.idLanguage}}"/></td></tr>
-                                                {% endfor %}
-                            </table>
-                        </div>
-                    </div>
-                    {% if listeml != empty %}
-                        <a href="index.php?page=languages"><button class="btn btn-lg btn-block btn-primary" type="submit" name="btSuppListe" id="btSuppListe">Supprimer</button></a>
-                    {% endif %}
+                    {% endif %} -->
                 </div>
             </div>
 

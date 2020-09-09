@@ -1,18 +1,15 @@
 <?php
 
-//function actionLanguages($twig) {
-//    echo $twig->render('languages.html.twig', array());
-//}
-
 function actionAdminLanguages($twig, $db) {
     $form = array();
     $lang = new Language($db);
     
     if (isset($_POST['btLang'])) {
         $inputLang = $_POST['inputLang'];
+        $inputWatt = $_POST['inputWatt'];
         $form['valide'] = true;
         $lang = new Language($db);
-        $exec = $lang->insert($inputLang);
+        $exec = $lang->insert($inputLang, $inputWatt);
         if (!$exec) {
             $form['valide'] = false;
             $form['message'] = 'Problème d\'insertion dans la table language ';
@@ -41,70 +38,42 @@ function actionLanguages($twig, $db) {
     $lang = new Language($db);
     $coder = new Coder($db);
     
-    if (isset($_POST['btCoder'])) {
-        $cocher = $_POST['cocher'];
+    if (isset($_POST['btSave'])) {
+
+        $hpj = $_POST['hpj'];
+
+        $idLanguage = $_POST['idLanguage'];
+
         $emailcoder = $_SESSION['login'];
-        foreach ($cocher as $idLanguage) {
-            $exec = $coder->insert($idLanguage, $emailcoder);
+
+        foreach ($hpj as $value) {
+            $exec = $coder->insert($idLanguage, $emailcoder, $value);
             if (!$exec) {
                 $form['valide'] = false;
                 $form['message'] = 'Problème d\'ajout dans la table coder';
             }
         }
+
     }
 
-// CE QUE JE RAJOUTE
-    
-    if (isset($_POST['btSuppListe'])) {
-        $cocher = $_POST['cocher'];
-        $emailcoder = $_SESSION['login'];
-        foreach ($cocher as $idLanguage) {
-            $exec = $coder->delete($idLanguage, $emailcoder);
-            if (!$exec) {
-                $form['valide'] = false;
-                $form['message'] = 'Problème de suppression dans la table coder';
-            }
-        }
-    }
-    
-    if (isset($_GET['id'])) {
-        $emailcoder = $_SESSION['login'];
-        $exec = $coder->delete($_GET['id'], $emailcoder);
-        if (!$exec) {
-            $form['valide'] = false;
-            $form['message'] = 'Problème de suppression dans la table coder';
-        } else {
-            $form['valide'] = true;
-            $form['message'] = 'Language supprimé avec succès';
-        }
-    }
-
-// FIN DE CE QUE JE RAJOUTE   
-    
     $listeld = $lang->select();
     $listeml = $coder->selectByEmail($_SESSION['login']);
-//    $result = array_diff_uassoc($listeld, $listeml, function ($a, $b) {
-//        if ($a['id'] === $b['id']) {
-//            return 0;
-//        }
-//        return ($a['id'] > $b['id']) ? 1 : -1;
-//    });
+
     $t = array();
     foreach ($listeld as $liml) {
         $trouve = 0;
         foreach ($listeml as $lild) {
-            //var_dump($liml[1]);
-//          echo 'compare'.$lild[0].':'.$liml[0];
+
             if ($lild[0] == $liml[0]) {
                 $trouve = 1;
-//             echo 'trouvé';
+
             }
         }
-//       echo 'valeur : '. $trouve;
         if ($trouve == 0) {
-//           echo 'ajout'.$liml[0];
+
             $v['id'] = $liml['id'];
             $v['nom'] = $liml['nom'];
+            $v['watt'] = $liml['watt'];
             $t[] = $v;
         }
     }
@@ -131,9 +100,10 @@ function actionModifLanguages($twig, $db) {
             $lang = new Language($db);
             $unLang = $lang->selectByIdLang($_POST['idlangage']);
             $nom = $_POST['inputModifLang'];
+            $watt = $_POST['inputModifWatt'];
             $id = $_POST['idlangage'];
             $form['idlangage'] = $unLang;
-            $exec = $lang->update($nom, $id);
+            $exec = $lang->update($nom, $id, $watt);
             if (!$exec) {
                 $form['valide'] = false;
                 $form['message'] = 'Échec de la modification';
@@ -147,6 +117,31 @@ function actionModifLanguages($twig, $db) {
     }
     
     echo $twig->render('modiflanguages.html.twig', array('form' => $form));
+}
+
+
+function actionModifConso($twig, $db) {
+    $form = array();
+    $coder = new Coder($db);
+
+
+
+    if (isset($_GET['id'])) {
+        $language = new Language($db);
+        $unLang = $language->selectByIdLang($_GET['id']);
+        if ($unLang != null) {
+            $form['language'] = $unLang;
+        }
+    }
+
+
+
+
+
+
+
+
+    echo $twig->render('modifconso.html.twig', array('form' => $form));
 }
 
 ?>

@@ -11,16 +11,16 @@ class Language {
 
     public function __construct($db) {
         $this->db = $db;
-        $this->insert = $db->prepare("insert into language (nom)values(:nom)");
-        $this->select = $db->prepare("select id, nom from language order by nom");
-        $this->selectByIdLang = $db->prepare("select nom, id from language where id=:id order by nom");
-        $this->update = $db->prepare("update language set nom=:nom where id=:id");
+        $this->insert = $db->prepare("insert into language (nom, watt)values(:nom, :watt)");
+        $this->select = $db->prepare("select id, nom, watt from language order by watt DESC");
+        $this->selectByIdLang = $db->prepare("select nom, id, watt from language where id=:id order by watt");
+        $this->update = $db->prepare("update language set nom=:nom, watt=:watt where id=:id");
         $this->delete = $db->prepare("delete from language where id=:id");
     }
 
-    public function insert($inputLang) {
+    public function insert($inputLang, $inputWatt) {
         $r = true;
-        $this->insert->execute(array(':nom' => $inputLang));
+        $this->insert->execute(array(':nom' => $inputLang, ':watt' => $inputWatt));
         if ($this->insert->errorCode() != 0) {
             print_r($this->insert->errorInfo());
             $r = false;
@@ -44,9 +44,9 @@ class Language {
         return $this->selectByIdLang->fetch();
     }
 
-    public function update($nom, $id) {
+    public function update($nom, $id, $watt) {
         $r = true;
-        $this->update->execute(array(':nom' => $nom, ':id' => $id));
+        $this->update->execute(array(':nom' => $nom, ':id' => $id, ':watt' => $watt));
         if ($this->update->errorCode() != 0) {
             print_r($this->update->errorInfo());
             $r = false;
