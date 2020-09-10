@@ -26,15 +26,17 @@
                 <br/>
                 <a href="index.php?page=equipements" class="bouton-dessouscompte">Régler ma consommation</a>
                 <a href="index.php?page=logsdev" class="bouton-dessouscompte">Ma consommation</a>
+                <br/>
+                <a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/src/controleur/statistiques_consoleaf.php?utilisateur={{ form.utilisateur.email }}" class="bouton-dessouscompte">Ma consommation en graphiques</a>
 
             </div>
 
             <div class="col-lg-6 col-sm-12">
-                <h2 style="color: #3c763d">Ma maison :</h2>
+                <h2 style="color: #3c763d">Ma maison en photo :</h2>
                 {% if form.utilisateur.photo is not empty %}
 
                     <span><br/><br/><img width=300 src="images/{{form.utilisateur.photo}}" class="image-compte" alt="" /></span><br /><br /><br /><br /><br /><br /><br /><br />
-                    {% endif %} 
+                {% endif %}
 
             </div>
 
@@ -42,7 +44,7 @@
 
         <br /><br /><br />
         <div class='form-signin'>
-        <a style="float: left" href="index.php?page=deconnexion" class="btn btn-lg btn-primary btn-block">Se déconnecter</a>
+            <a style="float: left" href="index.php?page=deconnexion" class="btn btn-lg btn-primary btn-block">Se déconnecter</a>
         </div>
 
     </div>

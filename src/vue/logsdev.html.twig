@@ -18,21 +18,39 @@
                         <thead>
                         <tr>
                             <th style="text-align: center"scope="col">Appareil</th>
-                            <th style="text-align: center" scope="col">Email utilisateur</th>
-                            <th style="text-align: center" scope="col">Utilisation journalière</th>
+                            <th style="text-align: center" scope="col">Utilisation journalière en heure</th>
                             <th style="text-align: center" scope="col">Utilisation en Jour/An</th>
-                            <th style="text-align: center" scope="col">Puissance en kWh</th>
+                            <th style="text-align: center" scope="col">Puissance</th>
+                            <th style="text-align: center" scope="col">Consomation journalière</th>
+                            <th style="text-align: center" scope="col">Consomation annuelle</th>
+                            <th style="text-align: center" scope="col">Prix Journalier</th>
+                            <th style="text-align: center" scope="col">Prix annuel</th>
+
+
+
+
                             <th style="text-align: center" scope="col">Édition</th>
                         </tr>
                         </thead>
                         <tbody>
+                        {% set PRIXTOTAL = 0 %}
+                        {% set PRIXTOTALJOURNALIER = 0 %}
+                        {% set CONSOANNUELLE = 0 %}
                         {% for w in liste %}
+                            {% set PRIXTOTAL = PRIXTOTAL + w.watt*w.hpj*w.jpa*0.154825  %}
+                            {% set PRIXTOTALJOURNALIER = PRIXTOTALJOURNALIER + w.watt*w.hpj*0.154825 %}
+                            {% set CONSOANNUELLE = CONSOANNUELLE + w.watt*w.hpj*w.jpa  %}
                             <tr>
                                 <td scope="col">{{ w.nom }}</td>
-                                <td>{{w.emailcoder}}</td>
                                 <td>{{ w.hpj }}</td>
                                 <td>{{ w.jpa }}</td>
-                                <td scope="row">{{ w.watt }}</td>
+                                <td scope="row">{{ w.watt }} kWh </td>
+                                <td scope="row">{{ w.watt*w.hpj }} kWh </td>
+                                <td scope="row">{{ w.watt*w.hpj*w.jpa }} kWh </td>
+                                <td scope="row">{{ w.watt*w.hpj*0.154825 }} € </td>
+                                <td scope="row">{{w.watt*w.hpj*w.jpa*0.154825 }} € </td>
+
+
                                 <td><div class="btn-group btn-group-lg"><a href="index.php?page=logsdev&id={{ w.id }}"><span class="glyphicon glyphicon-trash" ariahidden="true"></span></a></div></td>
 
                             </tr>
@@ -47,12 +65,23 @@
 
 
 
+
                 </div>
 
             </div>
         </div>
+        <p>Prix Total par jour : {{ PRIXTOTALJOURNALIER }} € </p>
 
+        <p>Prix Total par Année : {{ PRIXTOTAL }} € </p>
 
+        <p>Rejet de CO2 annuel : {{ CONSOANNUELLE*0.1 }} Kg </p>
+
+        {% if PRIXTOTAL > 1200 %}
+            <h4 style="color: red">Faites attention, votre consommation dépasse le seuil recommandé ! Il se peut que vous puissiez faire des économies en faisant attention à votre consomation annuelle. </h4>
+            {% if PRIXTOTALJOURNALIER > 8 %}
+                <h4 style="color: red">Faites attention, votre consommation dépasse le seuil recommandé! Il se peut que vous puissiez faire des économies en faisant attention à votre consomation quotidienne de vos appareils.</h4>
+            {% endif %}
+        {% endif %}
 
 
     </div>

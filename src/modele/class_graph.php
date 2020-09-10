@@ -9,6 +9,8 @@ class Graphique {
         $this->db = $db;
         $this->selectCountCo = $db->prepare("SELECT t1.email, (SELECT COUNT(*) FROM connexions t2 WHERE t2.emailco = t1.email) as nombredeco FROM utilisateurppe1 t1 ORDER by nombredeco desc");
         $this->selectJusteCo = $db->prepare("SELECT emailco, count(*) as nombredeco FROM connexions GROUP BY emailco");
+        $this->selectJusteCon = $db->prepare("SELECT nom FROM `language` WHERE 1");
+
     }
 
     public function selectCountCo() {
@@ -27,18 +29,24 @@ class Graphique {
         return $this->selectJusteCo->fetchAll();
     }
 
+    public function selectJusteCon() {
+        $liste3 = $this->selectJusteCon->execute();
+        if ($this->selectJusteCon->errorCode() != 0) {
+            print_r($this->selectJusteCon->errorInfo());
+        }
+        return $this->selectJusteCon->fetchAll();
+    }
+
+
     public function top($dataly, $type) {
         $image = null;
         $graph = null;
 
-        if ($type == 'barres3') {
-            $axe = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24');
-            $graph = $this->barres($dataly, $axe);
-        } elseif ($type == 'barres2') {
-            $axe = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31');
+        if ($type == 'barres2') {
+            $axe = array('1', '2', '3');
             $graph = $this->barres($dataly, $axe);
         } elseif ($type == 'barres') {
-            $axe = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
+            $axe = array('1', '2', '3');
             $graph = $this->barres($dataly, $axe);
         } else {
             $graph = $this->Pie($dataly);
@@ -88,23 +96,7 @@ class Graphique {
         return $graph;
     }
 
-    public function Pie($data) {
 
-        $graph = new PieGraph(800, 600);
-
-        $graph->SetFrame(false);
-
-        $theme_class = new VividTheme();
-        $graph->SetTheme($theme_class);
-
-        $p1 = new PiePlot3D($data);
-        $graph->Add($p1);
-
-        $p1->ShowBorder();
-        $p1->SetColor('black');
-        $p1->ExplodeSlice(1);
-        return $graph;
-    }
 
 }
 
