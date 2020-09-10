@@ -17,6 +17,7 @@ class Utilisateurppe1 {
     private $connexion;
     private $updatevalide;
     private $updatevalidecompte;
+    private $selectbyemailcoder;
 
 //    private $selectByEmailPhoto;
 
@@ -38,6 +39,7 @@ class Utilisateurppe1 {
         $this->connexion = $db->prepare("insert into connexions(emailco, dateco, deco) values (:emailco, :dateco, :deco)");
         $this->updatevalide = $db->prepare("update utilisateurppe1 set numunique=:numunique where email=:email");
         $this->updatevalidecompte = $db->prepare("update utilisateurppe1 set datevalide=:datevalide, valide=:valide where email=:email");
+        $this->selectbyemailcoder = $db->prepare("Select id, watt, nom, emailcoder, hpj, jpa from language l, coder c where c.idLanguage = l.id and emailcoder=:emailcoder");
     }
 
     public function insert($email, $mdp, $role, $nom, $prenom, $photo, $dateinscription, $datedernier, $numunique, $adrr) {
@@ -172,6 +174,14 @@ class Utilisateurppe1 {
             $r = false;
         }
         return $r;
+    }
+
+    public function selectbyemailcoder($emailcoder) {
+        $this->selectbyemailcoder->execute(array(':emailcoder' => $emailcoder));
+        if ($this->selectbyemailcoder->errorCode() != 0) {
+            print_r($this->selectbyemailcoder->errorInfo());
+        }
+        return $this->selectbyemailcoder->fetchAll();
     }
 
 }

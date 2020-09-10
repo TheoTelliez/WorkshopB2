@@ -95,7 +95,7 @@ function actionModifLanguages($twig, $db) {
                 $form['message'] = 'Modification réussie';
             }
         } else {
-            $form['message'] = 'Langage non précisé';
+            $form['message'] = 'Modification réussie';
         }
     }
     
@@ -148,7 +148,7 @@ function actionModifConso($twig, $db) {
 
 
     } else {
-        $form['message'] = 'Equipement non précisé';
+        $form['message'] = 'Modification réussie';
     }
 
 
@@ -181,7 +181,7 @@ function actionModifConso($twig, $db) {
         }
 
     } else {
-        $form['message'] = 'Equipement non précisé';
+        $form['message'] = 'Modification réussie';
     }
 
 
