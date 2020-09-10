@@ -83,7 +83,7 @@ class Graphique {
         $graph->Add($gbplot);
 
         $b1plot->SetColor("white");
-        $b1plot->SetFillColor("#2056ac");
+        $b1plot->SetFillColor("#b50ffc");
 
         return $graph;
     }

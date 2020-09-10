@@ -24,11 +24,11 @@ class Utilisateurppe1 {
 
     public function __construct($db) {
         $this->db = $db;    //je parle à db dans le private et je lui donne la valeur qui est dans le __construct
-        $this->insert = $db->prepare("insert into utilisateurppe1(email, mdp, idRole, nom, prenom, photo, dateinscription, datedernier, numunique) values (:email, :mdp, :role, :nom, :prenom, :photo, :dateinscription, :datedernier, :numunique)");
+        $this->insert = $db->prepare("insert into utilisateurppe1(email, mdp, idRole, nom, prenom, photo, dateinscription, datedernier, numunique, adrr) values (:email, :mdp, :role, :nom, :prenom, :photo, :dateinscription, :datedernier, :numunique, :adrr)");
         $this->connect = $db->prepare("select email, idRole, mdp from utilisateurppe1 where email=:email");
-        $this->select = $db->prepare("select email, id, idRole, photo, nom, prenom, dateinscription, datedernier, numunique r.libelle as libellerole from utilisateurppe1 u, roleppe1 r where u.idRole = r.id order by nom");
+        $this->select = $db->prepare("select email, adrr, id, idRole, photo, nom, prenom, dateinscription, datedernier, numunique r.libelle as libellerole from utilisateurppe1 u, roleppe1 r where u.idRole = r.id order by nom");
         $this->delete = $db->prepare("delete from utilisateurppe1 where utilisateurppe1.email=:email"); //requette ok
-        $this->selectByEmail = $db->prepare("select email, nom, prenom, idRole, dateinscription, photo, numrecup, numunique, valide from utilisateurppe1 where email=:email");
+        $this->selectByEmail = $db->prepare("select email, adrr, nom, prenom, idRole, dateinscription, photo, numrecup, numunique, valide from utilisateurppe1 where email=:email");
         $this->update = $db->prepare("update utilisateurppe1 set nom=:nom, prenom=:prenom, mdp=:mdp, idRole=:role, photo=:photo where email=:email");
         $this->updatesansphoto = $db->prepare("update utilisateurppe1 set nom=:nom, prenom=:prenom, mdp=:mdp, idRole=:role where email=:email");
         $this->updateuniquementphoto = $db->prepare("update utilisateurppe1 set photo=:photo where email=:email");
@@ -40,9 +40,9 @@ class Utilisateurppe1 {
         $this->updatevalidecompte = $db->prepare("update utilisateurppe1 set datevalide=:datevalide, valide=:valide where email=:email");
     }
 
-    public function insert($email, $mdp, $role, $nom, $prenom, $photo, $dateinscription, $datedernier, $numunique) {
+    public function insert($email, $mdp, $role, $nom, $prenom, $photo, $dateinscription, $datedernier, $numunique, $adrr) {
         $r = true;
-        $this->insert->execute(array(':email' => $email, ':mdp' => $mdp, ':role' => $role, ':nom' => $nom, ':prenom' => $prenom, ':photo' => $photo, ':dateinscription' => $dateinscription, ':datedernier' => $datedernier, ':numunique' => $numunique));  //on exécute les requètes préparés dans le prepare et on affecte les valeurs SQL aux valeurs du formulaire. ATTENTION à l'ordre et à la position !!
+        $this->insert->execute(array(':email' => $email, ':mdp' => $mdp, ':role' => $role, ':nom' => $nom, ':prenom' => $prenom, ':photo' => $photo, ':dateinscription' => $dateinscription, ':datedernier' => $datedernier, ':numunique' => $numunique, ':adrr' => $adrr));  //on exécute les requètes préparés dans le prepare et on affecte les valeurs SQL aux valeurs du formulaire. ATTENTION à l'ordre et à la position !!
         if ($this->insert->errorCode() != 0) {
             print_r($this->insert->errorInfo());
             $r = false;

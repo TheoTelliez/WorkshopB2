@@ -13,6 +13,7 @@ function actionInscrire($twig, $db) {
         $nom = $_POST['inputSurname'];
         $prenom = $_POST['inputName'];
         $role = $_POST['role'];
+        $adrr = $_POST['inputadrr'];
         $photo = NULL;
         date_default_timezone_set('Europe/Paris');
         $dateinscription = date("Y-m-d"); //Ici le format n'est pas important dans le sens ou on ne le voit pas, et on l'affiche dans le profil en tant que date au bon format.
@@ -26,7 +27,7 @@ function actionInscrire($twig, $db) {
             if (!empty($_FILES['photo']['name'])) {
                 $extensions_ok = array('png', 'gif', 'jpg', 'jpeg');
                 $taille_max = 500000;
-                $dest_dossier = '/var/www/html/symfony4-4059/public/PPE1/web/images/';
+                $dest_dossier = '/var/www/html/symfony4-4059/public/WorkshopB2/web/images/';
                 if (!in_array(substr(strrchr($_FILES['photo']['name'], '.'), 1), $extensions_ok)) {
                     echo 'Veuillez sélectionner un fichier de type png, gif ou jpg !';
                 } else {
@@ -72,7 +73,7 @@ AAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
             if ($unUtilisateur == null) {
                 if ($unUtilisateur != null) {
                     $form['valide'] = false;
-                    $form['message'] = 'Utilisateur déja inscrit sur le site PPE';
+                    $form['message'] = 'Utilisateur déja inscrit sur le site WorkshopB2';
                 } else {
                     header("Location:index.php?page=checkcompte&email=$inputEmail");
                     ini_set('display_errors', 1);
@@ -90,7 +91,7 @@ AAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
   <meta name="x-apple-disable-message-reformatting"> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
   <meta content="telephone=no" name="format-detection"> 
-  <title>PPE1 :</title> 
+  <title>WorkshopB2 :</title> 
   <!--[if (mso 16)]>
     <style type="text/css">
     a {text-decoration: none;}
@@ -157,7 +158,7 @@ a[x-apple-data-detectors] {
                   <td class="es-m-p0r" width="560" valign="top" align="center" style="padding:0;Margin:0;"> 
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"> 
                      <tr style="border-collapse:collapse;"> 
-                      <td align="center" style="padding:0;Margin:0;"><a target="_blank" href="' . $adresse . '" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#2CB543;"><img class="adapt-img" src="https://funeck.stripocdn.email/content/guids/CABINET_3c9063ad7d67414d03ae9474cb7b1773/images/25751579035521779.JPG" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="560"></a></td> 
+                      <td align="center" style="padding:0;Margin:0;"><a target="_blank" href="' . $adresse . '" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#2CB543;"><img class="adapt-img" src="https://zupimages.net/up/20/37/sico.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="560"></a></td> 
                      </tr> 
                      <tr style="border-collapse:collapse;"> 
                       <td style="padding:0;Margin:0;"><br><br><br><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, helvetica, sans-serif;line-height:21px;color:#333333;text-align:center;">Bonjour, pour valider votre inscription veuillez cliquer <a href="' . $adresse . '?page=validecompte&email=' . $inputEmail . '&id=' . $numunique . '" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#2CB543;">ici</a></p><br><br><br></td> 
@@ -182,7 +183,7 @@ a[x-apple-data-detectors] {
 
                     // En-têtes additionnels
 //                $headers[] = 'To: Mary <mary@example.com>, Kelly <kelly@example.com>';
-                    $headers[] = 'From: PPE <validation@ppe.com>';
+                    $headers[] = 'From: ConsoLeaf <validation@consoleaf.com>';
 
                     // Envoi
                     mail($to, $subject, $message, implode("\r\n", $headers));
@@ -192,7 +193,7 @@ a[x-apple-data-detectors] {
                 }
             } else {
                 $form['valide'] = false;
-                $form['message'] = 'Utilisateur non inscrit sur le site PPE1';
+                $form['message'] = 'Utilisateur non inscrit sur le site ConsoLeaf';
             }
 
 
@@ -208,7 +209,7 @@ a[x-apple-data-detectors] {
 
 
             $exec = $utilisateur->insert($inputEmail, password_hash($inputPassword,
-                            PASSWORD_DEFAULT), $role, $nom, $prenom, $photo, $dateinscription, $datedernier, $numunique);
+                            PASSWORD_DEFAULT), $role, $nom, $prenom, $photo, $dateinscription, $datedernier, $numunique, $adrr);
 
             if (!$exec) {
                 $form['valide'] = false;
@@ -223,6 +224,7 @@ a[x-apple-data-detectors] {
 
         $form['email'] = $inputEmail;
         $form['role'] = $role;
+        $form['adrr'] = $adrr;
         $form['datedernier'] = $datedernier;
         $form['numunique'] = $numunique;
     }
@@ -245,7 +247,7 @@ function actionCheckCompte($twig, $db) {
         if ($unUtilisateur == null) {
             if ($unUtilisateur != null) {
                 $form['valide'] = false;
-                $form['message'] = 'Utilisateur déja inscrit sur le site PPE';
+                $form['message'] = 'Utilisateur déja inscrit sur le site ConsoLeaf';
             } else {
                 header("Location:index.php?page=checkcompte&email=$inputEmail");
                 ini_set('display_errors', 1);
@@ -263,7 +265,7 @@ function actionCheckCompte($twig, $db) {
   <meta name="x-apple-disable-message-reformatting"> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
   <meta content="telephone=no" name="format-detection"> 
-  <title>PPE1 :</title> 
+  <title>ConsoLeaf :</title> 
   <!--[if (mso 16)]>
     <style type="text/css">
     a {text-decoration: none;}
@@ -330,7 +332,7 @@ a[x-apple-data-detectors] {
                   <td class="es-m-p0r" width="560" valign="top" align="center" style="padding:0;Margin:0;"> 
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"> 
                      <tr style="border-collapse:collapse;"> 
-                      <td align="center" style="padding:0;Margin:0;"><a target="_blank" href="' . $adresse . '" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#2CB543;"><img class="adapt-img" src="https://funeck.stripocdn.email/content/guids/CABINET_3c9063ad7d67414d03ae9474cb7b1773/images/25751579035521779.JPG" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="560"></a></td> 
+                      <td align="center" style="padding:0;Margin:0;"><a target="_blank" href="' . $adresse . '" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#2CB543;"><img class="adapt-img" src="https://zupimages.net/up/20/37/sico.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="560"></a></td> 
                      </tr> 
                      <tr style="border-collapse:collapse;"> 
                       <td style="padding:0;Margin:0;"><br><br><br><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, helvetica, sans-serif;line-height:21px;color:#333333;text-align:center;">Bonjour, pour valider votre inscription veuillez cliquer <a href="' . $adresse . '?page=validecompte&email=' . $inputEmail . '&id=' . $numunique . '" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#2CB543;">ici</a></p><br><br><br></td> 
@@ -355,7 +357,7 @@ a[x-apple-data-detectors] {
 
                 // En-têtes additionnels
 //                $headers[] = 'To: Mary <mary@example.com>, Kelly <kelly@example.com>';
-                $headers[] = 'From: PPE <validation@ppe.com>';
+                $headers[] = 'From: ConsoLeaf <validation@consoleaf.com>';
 
                 // Envoi
                 mail($to, $subject, $message, implode("\r\n", $headers));
@@ -367,7 +369,7 @@ a[x-apple-data-detectors] {
             }
         } else {
             $form['valide'] = false;
-            $form['message'] = 'Utilisateur non inscrit sur le site PPE1';
+            $form['message'] = 'Utilisateur non inscrit sur le site ConsoLeaf';
         }
 
         $form['email'] = $inputEmail;

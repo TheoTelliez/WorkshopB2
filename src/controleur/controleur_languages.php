@@ -37,24 +37,7 @@ function actionLanguages($twig, $db) {
     $form = array();
     $lang = new Language($db);
     $coder = new Coder($db);
-    
-    if (isset($_POST['btSave'])) {
 
-        $hpj = $_POST['hpj'];
-
-        $idLanguage = $_POST['idLanguage'];
-
-        $emailcoder = $_SESSION['login'];
-
-        foreach ($hpj as $value) {
-            $exec = $coder->insert($idLanguage, $emailcoder, $value);
-            if (!$exec) {
-                $form['valide'] = false;
-                $form['message'] = 'Problème d\'ajout dans la table coder';
-            }
-        }
-
-    }
 
     $listeld = $lang->select();
     $listeml = $coder->selectByEmail($_SESSION['login']);
@@ -65,7 +48,7 @@ function actionLanguages($twig, $db) {
         foreach ($listeml as $lild) {
 
             if ($lild[0] == $liml[0]) {
-                $trouve = 1;
+                $trouve = 0;
 
             }
         }
@@ -122,7 +105,7 @@ function actionModifLanguages($twig, $db) {
 
 function actionModifConso($twig, $db) {
     $form = array();
-    $coder = new Coder($db);
+
 
 
 
@@ -133,6 +116,73 @@ function actionModifConso($twig, $db) {
             $form['language'] = $unLang;
         }
     }
+    $coder = new Coder($db);
+    $listeconso = $coder->selectconso($_SESSION['login'], $_GET['id']);
+
+    if (isset($_POST['btModifConsoVide'])) {
+
+        $coder = new Coder($db);
+
+        $hpj = $_POST['inputHPJ'];
+        $jpa = $_POST['inputJPA'];
+
+        $form['coder'] = $coder;
+
+
+        $idlang = $_POST['idlang'];
+
+        $emailcoder = $_SESSION['login'];
+
+
+
+
+        #INSERT
+        $exec = $coder->insert($idlang, $emailcoder, $hpj, $jpa);
+        if (!$exec) {
+            $form['valide'] = false;
+            $form['message'] = 'Échec de la modification';
+        } else {
+            $form['valide'] = true;
+            $form['message'] = 'Modification réussie';
+        }
+
+
+    } else {
+        $form['message'] = 'Equipement non précisé';
+    }
+
+
+
+    if (isset($_POST['btModifConso'])) {
+
+        $coder = new Coder($db);
+
+        $hpj = $_POST['inputHPJ'];
+        $jpa = $_POST['inputJPA'];
+
+        $form['coder'] = $coder;
+
+
+        $idlang = $_POST['idlang'];
+
+        $emailcoder = $_SESSION['login'];
+
+
+
+
+        #INSERT
+        $exec = $coder->updateconso($idlang, $emailcoder, $hpj, $jpa);
+        if (!$exec) {
+            $form['valide'] = false;
+            $form['message'] = 'Échec de la modification';
+        } else {
+            $form['valide'] = true;
+            $form['message'] = 'Modification réussie';
+        }
+
+    } else {
+        $form['message'] = 'Equipement non précisé';
+    }
 
 
 
@@ -140,8 +190,7 @@ function actionModifConso($twig, $db) {
 
 
 
-
-    echo $twig->render('modifconso.html.twig', array('form' => $form));
+    echo $twig->render('modifconso.html.twig', array('form' => $form, 'listeconso' => $listeconso));
 }
 
 ?>

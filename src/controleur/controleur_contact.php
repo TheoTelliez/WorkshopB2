@@ -30,7 +30,7 @@ function actionContact($twig, $db) {
   <meta name="x-apple-disable-message-reformatting"> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
   <meta content="telephone=no" name="format-detection"> 
-  <title>PPE1 :</title> 
+  <title>ConsoLeaf :</title> 
   <!--[if (mso 16)]>
     <style type="text/css">
     a {text-decoration: none;}
@@ -97,7 +97,7 @@ a[x-apple-data-detectors] {
                   <td class="es-m-p0r" width="560" valign="top" align="center" style="padding:0;Margin:0;"> 
                    <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"> 
                      <tr style="border-collapse:collapse;"> 
-                      <td align="center" style="padding:0;Margin:0;"><a target="_blank" href="' . $adresse . '" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#2CB543;"><img class="adapt-img" src="https://funeck.stripocdn.email/content/guids/CABINET_3c9063ad7d67414d03ae9474cb7b1773/images/25751579035521779.JPG" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="560"></a></td> 
+                      <td align="center" style="padding:0;Margin:0;"><a target="_blank" href="' . $adresse . '" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#2CB543;"><img class="adapt-img" src="https://zupimages.net/up/20/37/sico.jpg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="560"></a></td> 
                      </tr> 
                      <tr style="border-collapse:collapse;"> 
                       <td style="padding:0;Margin:0;"><br><br><br><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, helvetica, sans-serif;line-height:21px;color:#333333;text-align:center;">Bonjour, vous avez reçu un message de '. $inputEmail .'.</p><br><p p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, helvetica, sans-serif;line-height:21px;color:#333333;text-align:center;"> Voici son message : '. $Message .'</p><br><br><br></td> 
@@ -129,7 +129,7 @@ a[x-apple-data-detectors] {
             }
         } else {
             $form['valide'] = false;
-            $form['message'] = 'Utilisateur non inscrit sur le site PPE1';
+            $form['message'] = 'Utilisateur non inscrit sur le site ConsoLeaf';
         }
         $form['email'] = $inputEmail;
         $form['nom'] = $Nom;

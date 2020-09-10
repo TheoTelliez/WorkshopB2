@@ -15,9 +15,9 @@ function getPage($db) {
     $lesPages['mdpoublie'] = "actionMdpOublie;0";
     $lesPages['checkmail'] = "actionCheckMail;0";
     $lesPages['modifmotdepasse'] = "actionModifMotDePasse;0";
-    $lesPages['ajoutlanguages'] = "actionAdminLanguages;1";
-    $lesPages['languages'] = "actionLanguages;0";
-    $lesPages['modiflanguages'] = "actionModifLanguages;1";
+    $lesPages['ajoutequipement'] = "actionAdminLanguages;1";
+    $lesPages['equipements'] = "actionLanguages;0";
+    $lesPages['modifequipements'] = "actionModifLanguages;1";
     $lesPages['logsadmin'] = "actionLogsAdmin;1";
     $lesPages['logsdev'] = "actionLogsDev;0";
     $lesPages['stats'] = "actionStats;1";

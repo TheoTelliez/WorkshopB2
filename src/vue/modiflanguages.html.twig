@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 {% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
-{% block title %} {{ parent() }} ModifLanguages {% endblock %}  
+{% block title %} {{ parent() }} Modif Equipements {% endblock %}  
 
 {% block contenu %}
 
@@ -9,7 +9,7 @@
         {% if form.langage != null %}
 
     <div class="wrapper" style="text-align: center">
-    <form class="form-signin" action="index.php?page=modiflanguages" method="post"
+    <form class="form-signin" action="index.php?page=modifequipements" method="post"
           enctype="application/x-www-form-urlencoded">
 
 
@@ -20,9 +20,9 @@
         <input type="text" id="inputModifLang" name="inputModifLang" class="form-control"
                placeholder="Saisir un language" value="{{ form.langage.nom }}" required autofocus>
 
-        <label for="inputModifWatt" class="sr-only">Nom:</label>
-        <input type="text" id="inputModifWatt" name="inputModifWatt" class="form-control"
-               placeholder="Saisir un language" value="{{ form.langage.watt }}" required autofocus>
+        <label for="inputModifWatt" class="sr-only">Nombre:</label>
+        <input step="0.1" max="100" min="0" type="number" id="inputModifWatt" name="inputModifWatt" class="form-control"
+               placeholder="Saisir la consommation" value="{{ form.langage.watt }}" required autofocus>
         
         <input type="hidden" name="idlangage" value="{{ form.langage.id }}"/>
 
@@ -35,19 +35,19 @@
         {% else %}
             <div class="wrapper" style="text-align: center">
             <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
-            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=ajoutlanguages">Retourner sur la liste des langages</a></h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=ajoutequipement">Retourner sur la liste des langages</a></h1>
             </div>
         {% endif %}
     {% else %}
         {% if form.valide == true %}
             <div class="wrapper" style="text-align: center">
             <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
-            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=ajoutlanguages">Retourner sur la liste des langages</a></h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=ajoutequipement">Retourner sur la liste des langages</a></h1>
             </div>
         {% else %}
             <div class="wrapper" style="text-align: center">
             <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
-            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=ajoutlanguages">Retourner sur la liste des langages</a></h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=ajoutequipement">Retourner sur la liste des langages</a></h1>
             </div>
         {% endif %}
 
