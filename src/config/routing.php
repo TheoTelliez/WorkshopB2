@@ -25,6 +25,7 @@ function getPage($db) {
     $lesPages['validecompte'] = "actionValideCompte;0";
     $lesPages['recherche'] = "actionRecherche;0";
     $lesPages['modifconso'] = "actionModifConso;0";
+    $lesPages['econo'] = "actionEcono;0";
 
 
     if ($db != null) {

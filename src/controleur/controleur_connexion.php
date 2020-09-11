@@ -29,7 +29,7 @@ function actionConnexion($twig, $db) {
                     $dateco = date("Y-m-d H:i:s");
                     $unUtilisateur = $utilisateur->updateconnect($inputEmail, $datedernier);
                     $connexion->connexion($inputEmail, $dateco);
-                    header("Location:index.php");
+                    header("Location:http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/src/controleur/statistiques_consoleaf.php?utilisateur=". $_POST['inputEmail'] ."");
                 } else {
                     $form['valide'] = false;
                     $form['message'] = 'Inscription non validée.';

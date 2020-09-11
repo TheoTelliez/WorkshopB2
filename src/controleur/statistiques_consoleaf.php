@@ -16,7 +16,7 @@ $result = mysqli_query($connect, $query);  //données qui sont normalement trans
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come
     *after* these tags -->
     <meta name="author" content="">
-    <title> {% block title %} ConsoLeaf - {% endblock %}</title>
+    <title> ConsoLeaf - Statistiques</title>
     <link href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
     <link href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -44,7 +44,7 @@ $result = mysqli_query($connect, $query);  //données qui sont normalement trans
                 <!--                title: 'Pourcentages de co par emails', -->
                 backgroundColor: 'white',
                 is3D:true,
-                legend:{position: 'bottom'},
+                legend:{position: 'right'},
                 //pieHole: 0.4
             };
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -89,6 +89,8 @@ $result = mysqli_query($connect, $query);  //données qui sont normalement trans
                 <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=apropos">À propos</a></li>
                 <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=mentions">Mentions légales</a></li>
                 <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=contact">Contact</a></li>
+                <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=moncompte&email=<?php echo $utilisateur;?>">Mon domicile</a></li>
+                <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=econo">Astuces éco</a></li>
                 <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=deconnexion">Se déconnecter</a></li>
 
             </ul>

@@ -18,4 +18,8 @@ function actionApropos($twig) {
     echo $twig->render('apropos.html.twig', array());
 }
 
+function actionEcono($twig) {
+    echo $twig->render('econo.html.twig', array());
+}
+
 ?>
