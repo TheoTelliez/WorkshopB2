@@ -3,6 +3,11 @@ $utilisateur = $_GET["utilisateur"];
 $connect = mysqli_connect("localhost", "login4059", "kFILYMNLotHlbgo", "dblogin4059WORKSHOP");   // équivalent du fichier config
 $query = "SELECT *, c.hpj*l.watt as consojour FROM language l, coder c WHERE l.id=c.idLanguage and emailcoder='$utilisateur'"; //équivalent de la classe dans le MVC
 $result = mysqli_query($connect, $query);  //données qui sont normalement transmises
+
+$delai=3;
+$url='http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/src/controleur/statistiques_consoleaf.php?utilisateur=$utilisateur';
+header("Refresh: $delai;url=http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/src/controleur/statistiques_consoleaf.php?utilisateur=$utilisateur");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,28 +82,17 @@ $result = mysqli_query($connect, $query);  //données qui sont normalement trans
         <center>
             <ul id="menu" class="nav navbar-nav">
                 <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php">Accueil</a></li>
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" ariahaspopup="
-                                           true" aria-expanded="false">Administration</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=ajoutequipement">Ajout équipement</a></li>
-                    </ul>
-                </li>
-
                 <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=apropos">À propos</a></li>
-                <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=mentions">Mentions légales</a></li>
                 <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=contact">Contact</a></li>
-                <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=moncompte&email=<?php echo $utilisateur;?>">Mon domicile</a></li>
+                <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=moncompte&email=<?php echo $utilisateur;?>">Mon profil</a></li>
+                <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=equipements" >Régler ma consommation</a> </li>
+                <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=logsdev" >Ma consommation</a> </li>
+                <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/src/controleur/statistiques_consoleaf.php?utilisateur=<?php echo $utilisateur;?>" >Ma consommation en graphiques</a> </li>
                 <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=econo">Astuces éco</a></li>
                 <li><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=deconnexion">Se déconnecter</a></li>
 
             </ul>
-            <form class="navbar-form navbar-right" action="index.php?page=recherche" method="post"
-                  enctype="application/x-www-form-urlencoded">
-                <input id="inputRecherche" name="inputRecherche" class="form-control mr-sm-2" type="search" placeholder="Rechercher" arialabel="Rechercher">
-                <button class="btn btn-outline-success my-2 my-sm-0" id="btRecherche" name="btRecherche" type="submit">OK</button>
-            </form>
+
     </div> <!-- Ici on ne sait pas pourquoi ça se met en rouge dans le code source parce que la balise est bien fermée ! -->
 </nav>
 
@@ -107,7 +101,7 @@ $result = mysqli_query($connect, $query);  //données qui sont normalement trans
 
 <div class="wrapper" style="text-align: center;" >
     <br /><br />
-<h2>Statistiques de ma consommation :</h2>
+<h2>Statistiques de ma consommation journalière :</h2>
 
 
 
@@ -123,6 +117,7 @@ $result = mysqli_query($connect, $query);  //données qui sont normalement trans
 
 <div id="copyright">
     <p>&copy; Projet Workshop B2. Tous droits réservés. | Photos par <a href="http://fotogrph.com/">Fotogrph</a> | Modèle par <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+    <p><a href="http://serveur1.arras-sio.com/symfony4-4059/WorkshopB2/web/index.php?page=mentions">Mentions légales</a></p>
     <ul class="contact">
         <li><a href="" class="icon icon-facebook"><span>Facebook</span></a></li>
         <li><a href="" class="icon icon-twitter"><span>Twitter</span></a></li>
